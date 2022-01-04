@@ -1,27 +1,29 @@
-const emailRegex = require("../utils/emailValidate");
+const { emailAndPasswordExists,
+  emailIsValid,
+  passwordIsSmallerThanSix } = require('../validations/loginValidations');
+
+  const { user } = require('../database/models');
 
 const validateLogin = (email, password) => {
-  if (!email || !password) {
-    return {
-      status: 400,
-      message: 'Email and password are required'
-    };
-  }else if (!emailRegex.test(email)) {
-      return {
-        status: 400,
-        message: 'Invalid email'
-      };
-    }else if(password.length < 6) {
-      return {
-        status: 400,
-        message: 'Password must be at least 6 characters'
-      };
-    }else{
-      return {
-        status: 200,
-        message: 'Login successful'
-      };
-    }
-    }
+ const getUser = user.findOne({ email });
 
-    module.exports = {validateLogin};
+if (emailAndPasswordExists(email, password)
+  && emailIsValid(email)
+  && passwordIsSmallerThanSix(password)) {
+  return {
+    status: 200,
+    message: 'Login successful',
+  };
+} if (!getUser) {
+  return {
+    status: 404,
+    message: 'Not found',
+  };
+} 
+  return {
+    status: 400,
+    message: 'Login failed',
+  };
+};
+
+  module.exports = { validateLogin };
