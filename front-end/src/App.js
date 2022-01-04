@@ -1,17 +1,15 @@
-import { Route, BrowserRouter, Switch, Redirect } from 'react-router-dom';
+import { Route, BrowserRouter, Routes, Navigate } from 'react-router-dom';
 import React from 'react';
 import './App.css';
-import login from './pages/login';
+import Login from './pages/login';
 
 function App() {
   return (
     <BrowserRouter>
-      <Switch>
-        <Route exact path="/">
-          <Redirect to="/login" />
-        </Route>
-        <Route exact path="/login" component={ login } />
-      </Switch>
+      <Routes>
+        <Route path="/" element={ <Navigate to="/login" /> } />
+        <Route path="/login" element={ <Login /> } />
+      </Routes>
     </BrowserRouter>
   );
 }

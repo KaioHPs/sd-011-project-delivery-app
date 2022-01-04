@@ -2,8 +2,10 @@ const { emailAndPasswordExists,
   emailIsValid,
   passwordIsSmallerThanSix } = require('../validations/loginValidations');
 
+  const { user } = require('../database/models');
+
 const validateLogin = (email, password) => {
-  const getUser = user.findOne({ email: email})
+ const getUser = user.findOne({ email });
 
 if (emailAndPasswordExists(email, password)
   && emailIsValid(email)
@@ -12,16 +14,16 @@ if (emailAndPasswordExists(email, password)
     status: 200,
     message: 'Login successful',
   };
-} else if (!getUser) {
+} if (!getUser) {
   return {
     status: 404,
     message: 'Not found',
   };
-} else {
+} 
   return {
     status: 400,
     message: 'Login failed',
   };
-}};
+};
 
   module.exports = { validateLogin };
