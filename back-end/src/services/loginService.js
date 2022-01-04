@@ -11,7 +11,7 @@ const validateLogin = (email, password) => {
         status: 400,
         message: 'Invalid email'
       };
-     }else if(password.length < 6) {
+    }else if(password.length < 6) {
       return {
         status: 400,
         message: 'Password must be at least 6 characters'
