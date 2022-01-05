@@ -16,6 +16,9 @@ router.get('/seller/orders/:id', sellerController.getById);
 
 router.post('/customer/orders', customerController.createOrder);
 
+
+router.get('/seller/orders', sellerController.getAll);
+router.post('/customer/orders', customerController.createOrder);
 router.post('/login', login);
 router.post('/register', register);
 
