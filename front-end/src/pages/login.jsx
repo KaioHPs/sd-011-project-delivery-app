@@ -1,8 +1,25 @@
 import React from 'react';
+import Axios from 'axios';
 
 export default function Login() {
   const emailRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-z0-9]+\.[a-z]+(\.[a-z]+)?$/i;
   const numberSix = 6;
+
+  window.onload = function pageOnload() {
+    const submitButton = document.getElementById('submitButton');
+    submitButton.disabled = true;
+  };
+
+  function validUser() {
+    const alert = document.getElementById('alertMessage');
+    alert.innerHTML = 'login feito com sucesso';
+  }
+
+  function alertErrorElement(error) {
+    const alert = document.getElementById('alertMessage');
+    const cartHTML = '<div id="common_login__element-invalid-email">';
+    alert.innerHTML = `${cartHTML}<p>${error}</p></div>`;
+  }
 
   function submitLock() {
     const email = document.getElementById('email').value;
@@ -14,9 +31,25 @@ export default function Login() {
       submitButton.disabled = true;
     }
   }
-  // const { email, setEmail } = useContext('email');
-  // const { password, setPassword } = useContext('password');
+
+  function submitToApi() {
+    const email = document.getElementById('email').value;
+    const password = document.getElementById('password').value;
+    Axios.post('http://localhost:3001/login', {
+      email,
+      password,
+    })
+      .then(() => {
+        validUser();
+      })
+      .catch((error) => {
+        console.log(error);
+        alertErrorElement(error);
+      });
+  }
+
   return (
+
     <div>
       <form>
         <input
@@ -36,8 +69,8 @@ export default function Login() {
         <button
           data-testid="common_login__button-login"
           id="submitButton"
-          type="submit"
-          disabled
+          type="button"
+          onClick={ () => submitToApi() }
         >
           LOGIN
 
@@ -49,6 +82,7 @@ export default function Login() {
           Ainda não tenho conta
 
         </button>
+        <div id="alertMessage" />
       </form>
     </div>
   );
