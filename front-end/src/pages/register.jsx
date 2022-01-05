@@ -1,3 +1,4 @@
+import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import validateRegister from '../helpers/validateRegister';
 
@@ -10,12 +11,20 @@ export default function Register() {
   useEffect(() => {
     const validateValues = () => {
       const isValid = validateRegister({ name, email, password });
-      console.log(isValid);
       setDisabled(isValid);
     };
 
     validateValues();
   }, [name, email, password]);
+
+  const registUser = () => {
+    axios.post('http://localhost:3001/register', {
+      name, email, password,
+    })
+      .then((r) => console.log(r))
+      .catch((err) => console.log(err));
+    console.log('loucrasy');
+  };
 
   return (
     <div>
@@ -57,8 +66,9 @@ export default function Register() {
         <button
           data-testid="common_register__button-register"
           id="submitButton"
-          type="submit"
+          type="button"
           disabled={ !disabled }
+          onClick={ () => registUser() }
         >
           CADASTRAR
         </button>
