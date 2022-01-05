@@ -11,13 +11,12 @@ export default function Login() {
   };
 
   function validUser() {
-    const alert = document.getElementById('alertMessage');
-    alert.innerHTML = 'login feito com sucesso';
+    window.location.href = '/customer/products';
   }
 
   function alertErrorElement(error) {
     const alert = document.getElementById('alertMessage');
-    const cartHTML = '<div id="common_login__element-invalid-email">';
+    const cartHTML = '<div data-testid="common_login__element-invalid-email">';
     alert.innerHTML = `${cartHTML}<p>${error}</p></div>`;
   }
 
@@ -32,7 +31,7 @@ export default function Login() {
     }
   }
 
-  function submitToApi() {
+  async function submitToApi() {
     const email = document.getElementById('email').value;
     const password = document.getElementById('password').value;
     Axios.post('http://localhost:3001/login', {
