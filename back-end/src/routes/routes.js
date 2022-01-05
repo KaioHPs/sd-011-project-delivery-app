@@ -8,7 +8,12 @@ const jwtValidation = require('../middlewares/jwtValidation');
 const { login } = require('../controllers/loginController');
 const { register } = require('../controllers/registerController');
 const { ordersList } = require('../controllers/customerOrdersController');
+const sellerController = require('../controllers/sellerController');
+const customerController = require('../controllers/costumerController');
 
+
+router.get('/seller/orders', sellerController.getAll);
+router.post('/customer/orders', customerController.createOrder);
 router.post('/login', login);
 router.post('/register', register);
 router.post('/customer/orders', ordersList);
