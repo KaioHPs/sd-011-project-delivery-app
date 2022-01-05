@@ -1,5 +1,6 @@
 import { Route, BrowserRouter, Routes, Navigate } from 'react-router-dom';
 import React from 'react';
+import { Routes, Route } from 'react-router-dom';
 import './App.css';
 import Login from './pages/login';
 import Register from './pages/register';
@@ -11,6 +12,10 @@ function App() {
         <Route path="/" element={ <Navigate to="/login" /> } />
         <Route path="/login" element={ <Login /> } />
         <Route path="/register" element={ <Register /> } />
+        <Route
+        path="/customer/products"
+        element={ <CustomerProducts /> }
+      />
       </Routes>
     </BrowserRouter>
   );
