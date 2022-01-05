@@ -1,23 +1,21 @@
-import { Route, BrowserRouter, Routes, Navigate } from 'react-router-dom';
+import { Route, Routes, Navigate } from 'react-router-dom';
 import React from 'react';
-import { Routes, Route } from 'react-router-dom';
 import './App.css';
 import Login from './pages/login';
 import Register from './pages/register';
+import CustomerProducts from './pages/CustomerProducts';
 
 function App() {
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={ <Navigate to="/login" /> } />
-        <Route path="/login" element={ <Login /> } />
-        <Route path="/register" element={ <Register /> } />
-        <Route
+    <Routes>
+      <Route path="/" element={ <Navigate to="/login" /> } />
+      <Route path="/login" element={ <Login /> } />
+      <Route path="/register" element={ <Register /> } />
+      <Route
         path="/customer/products"
         element={ <CustomerProducts /> }
       />
-      </Routes>
-    </BrowserRouter>
+    </Routes>
   );
 }
 
