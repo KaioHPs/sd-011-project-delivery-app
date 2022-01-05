@@ -1,5 +1,6 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import validateRegister from '../helpers/validateRegister';
 
 export default function Register() {
@@ -7,6 +8,8 @@ export default function Register() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [disabled, setDisabled] = useState(false);
+  const [invalid, setInvalid] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const validateValues = () => {
@@ -21,9 +24,8 @@ export default function Register() {
     axios.post('http://localhost:3001/register', {
       name, email, password,
     })
-      .then((r) => console.log(r))
-      .catch((err) => console.log(err));
-    console.log('loucrasy');
+      .then(() => navigate('/customer/products'))
+      .catch(() => setInvalid(true));
   };
 
   return (
@@ -73,6 +75,8 @@ export default function Register() {
           CADASTRAR
         </button>
       </form>
+      { invalid
+        && <p data-testid="common_register__element-invalid_register">invalid</p> }
     </div>
   );
 }

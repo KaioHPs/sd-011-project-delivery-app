@@ -1,6 +1,9 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
 export default function Login() {
+  const navigate = useNavigate();
+
   const emailRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-z0-9]+\.[a-z]+(\.[a-z]+)?$/i;
   const numberSix = 6;
 
@@ -44,6 +47,7 @@ export default function Login() {
         <button
           data-testid="common_login__button-register"
           type="button"
+          onClick={ () => navigate('/register') }
         >
           Ainda não tenho conta
         </button>
