@@ -16,7 +16,7 @@ const createToken = (email) => {
 };
 
 const validateToken = async (req, res, _next) => {
-  const { token }= req.body;
+  const { token } = req.body;
   if (!token) return res.status(200).json({ tokenIsValid: false });
 
   try {
