@@ -13,6 +13,8 @@ router.post('/customer/orders', ordersList);
 
 router.post('/token', jwtValidation.validateToken);
 
+router.post('/token', jwtValidation.validateToken);
+
 router.get('/customer/products', Products.getAllProducts);
 
 module.exports = router;
