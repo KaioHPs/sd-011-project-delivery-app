@@ -10,6 +10,19 @@ const getAll = async (_req, res) => {
   }
 };
 
+const getById = async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    // const order = await sellerService.getById(id);
+
+    return res.status(200).json(id);
+  } catch (error) {
+    return res.status(500).json(error);
+  }
+}
+
 module.exports = {
   getAll,
+  getById,
 };
