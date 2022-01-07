@@ -1,3 +1,4 @@
+// eslint-disable-next-line
 import { Route, Routes, Navigate } from 'react-router-dom';
 import React from 'react';
 import './App.css';
@@ -5,6 +6,7 @@ import Login from './pages/login';
 import Register from './pages/register';
 import CustomerProducts from './pages/CustomerProducts';
 import CustomerCheckout from './pages/CustomerCheckout';
+import SellerOrders from './pages/SellerOrders';
 
 function App() {
   return (
@@ -17,6 +19,10 @@ function App() {
         element={ <CustomerProducts /> }
       />
       <Route
+        path="/seller/orders"
+        element={ <SellerOrders /> }
+      />
+      <Route 
         path="/customer/checkout"
         element={ <CustomerCheckout /> }
       />

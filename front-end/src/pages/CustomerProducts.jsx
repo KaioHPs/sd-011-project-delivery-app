@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+// eslint-disable-next-line
 import axios from 'axios';
 import ProductCard from '../components/ProductCard';
 import CustomerNavbar from '../components/CustomerNavbar';

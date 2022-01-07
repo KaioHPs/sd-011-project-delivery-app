@@ -1,4 +1,11 @@
 {
   "root": true,
-  "extends": ["trybe-frontend"]
+  "extends": ["trybe-frontend"],
+  "rules": {
+    "import/no-unresolved": [
+      2, 
+      { "caseSensitive": false },
+      { "amd": true }
+   ]
+}
 }
