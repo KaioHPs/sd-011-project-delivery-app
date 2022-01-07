@@ -24,7 +24,11 @@ export default function Register() {
     axios.post('http://localhost:3001/register', {
       name, email, password,
     })
-      .then(() => navigate('/customer/products'))
+      .then((r) => {
+        window.localStorage
+          .setItem('user', JSON.stringify(r.data));
+        navigate('/customer/products');
+      })
       .catch(() => setInvalid(true));
   };
 

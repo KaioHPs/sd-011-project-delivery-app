@@ -19,9 +19,12 @@ const ProductCard = ({ product, setValFunc, totalProds }) => {
   }, []);
 
   useEffect(() => {
-    const newVals = quantity !== ''
-      ? { ...totalProds, [id]: { price, quantity } }
-      : { ...totalProds, [id]: { price, quantity: 0 } };
+    const newVals = { ...totalProds };
+    if (quantity === '' || quantity === 0) {
+      delete newVals[id];
+    } else {
+      newVals[id] = { price, quantity };
+    }
     setValFunc(newVals);
   }, [quantity]);
 
@@ -43,8 +46,11 @@ const ProductCard = ({ product, setValFunc, totalProds }) => {
   return (
     <div className="prod-card">
       <div className="prod-info-cont">
-        <span data-testid={ dataPrice }>
-          { `R$ ${price}` }
+        <span>
+          {'R$ '}
+          <span data-testid={ dataPrice }>
+            { price.replace(/\./, ',') }
+          </span>
         </span>
         <img data-testid={ dataImg } src={ urlImage } alt={ name } className="prod-img" />
       </div>

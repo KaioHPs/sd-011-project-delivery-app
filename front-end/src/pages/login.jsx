@@ -41,7 +41,9 @@ export default function Login() {
       email,
       password,
     })
-      .then(() => {
+      .then((r) => {
+        window.localStorage
+          .setItem('user', JSON.stringify(r.data));
         validUser();
       })
       .catch((error) => {
