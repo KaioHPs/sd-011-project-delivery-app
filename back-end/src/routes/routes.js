@@ -20,6 +20,7 @@ router.post('/customer/orders', customerController.createOrder);
 
 router.get('/seller/orders', sellerController.getAll);
 router.post('/customer/orders', customerController.createOrder);
+
 router.post('/login', login);
 router.post('/register', register);
 router.post('/customer/orders', ordersList);

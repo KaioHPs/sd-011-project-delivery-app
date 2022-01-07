@@ -24,6 +24,13 @@ const OrderCard = ({ order }) => {
   } = order;
   const navigate = useNavigate();
 
+  const orderDate = `seller_orders__element-order-date-${id}`;
+  const deliveryStatus = `seller_orders__element-delivery-status-${id}`;
+  const orderId = `seller_orders__element-order-id-${id}`;
+  const price = `seller_orders__element-card-price-${id}`;
+  const address = `seller_orders__element-card-address-${id}`;
+  const navigate = useNavigate();
+
   return (
     <div // eslint-disable-line
       className="order-card"
