@@ -1,5 +1,6 @@
 import React from 'react';
 // import PropTypes from 'prop-types';
+import { useNavigate } from 'react-router-dom';
 
 // eslint-disable-next-line
 const OrderCard = ({ order }) => {
@@ -15,14 +16,29 @@ const OrderCard = ({ order }) => {
     total_price: totalPrice, user_id
   } = order;
 
+  const orderDate = `seller_orders__element-order-date-${id}`;
+  const deliveryStatus = `seller_orders__element-delivery-status-${id}`;
+  const orderId = `seller_orders__element-order-id-${id}`;
+  const price = `seller_orders__element-card-price-${id}`;
+  const address = `seller_orders__element-card-address-${id}`;
+  const navigate = useNavigate();
+
   return (
-    <div className="order-card">
+    <div // eslint-disable-line
+      className="order-card"
+      // eslint-disable-next-line
+      onClick={() => navigate(`/seller/orders/${id}`)}
+    >
       <div className="order-container">
-        <span>{ `Pedido 000${id}` }</span>
-        <span>{ status }</span>
-        <span>{ saleDate }</span>
-        <span>{ totalPrice }</span>
-        <span>{ `${deliveryAddress}, ${deliveryNumber}` }</span>
+        <span data-test-id={ orderId }>{ `Pedido 000${id}` }</span>
+        <span data-testid={ deliveryStatus }>{ status }</span>
+        <span data-testid={ orderDate }>{ saleDate }</span>
+        <span data-testid={ price }>{ totalPrice }</span>
+        <span
+          data-testid={ address }
+        >
+          { `${deliveryAddress}, ${deliveryNumber}` }
+        </span>
       </div>
     </div>
   );

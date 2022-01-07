@@ -12,7 +12,10 @@ const customerController = require('../controllers/costumerController');
 
 
 router.get('/seller/orders', sellerController.getAll);
+router.get('/seller/orders/:id', sellerController.getById);
+
 router.post('/customer/orders', customerController.createOrder);
+
 router.post('/login', login);
 router.post('/register', register);
 
