@@ -9,6 +9,11 @@ const CustomerNavbar = ({ name }) => {
     window.location.href = '/login';
   };
 
+  const toOrder = (e) => {
+    e.preventDefault();
+    window.location.href = '/customer/orders';
+  };
+
   return (
     <div className="navbar flex bg-green-1 tc-white pt-1">
       <div className="fg-2 text-center bg-green-2">
@@ -19,14 +24,18 @@ const CustomerNavbar = ({ name }) => {
           Produtos
         </span>
       </div>
-      <div className="fg-2 text-center">
+      <button
+        className="navbar-btn fg-1 text-center bg-blue-1 tc-white"
+        type="button"
+        onClick={ toOrder }
+      >
         <span
           className="navbar-text"
           data-testid="customer_products__element-navbar-link-orders"
         >
           Pedidos
         </span>
-      </div>
+      </button>
       <div className="fg-4 fs-1 text-center" />
       <div className="fg-2 text-center bg-purple-1">
         <span

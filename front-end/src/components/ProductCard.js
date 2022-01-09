@@ -23,7 +23,7 @@ const ProductCard = ({ product, setValFunc, totalProds }) => {
     if (quantity === '' || quantity === 0) {
       delete newVals[id];
     } else {
-      newVals[id] = { price, quantity };
+      newVals[id] = { price, quantity, name, id };
     }
     setValFunc(newVals);
   }, [quantity]);

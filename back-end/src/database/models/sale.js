@@ -10,6 +10,7 @@ const sale = (sequelize, DataTypes) => {
   }, {
     timestamps: false,
     createdAt: 'sale_date',
+    updatedAt: false,
   });
 
   sale.associate = (models) => {

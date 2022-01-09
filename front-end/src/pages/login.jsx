@@ -17,10 +17,10 @@ export default function Login() {
     window.location.href = '/customer/products';
   }
 
-  function alertErrorElement(error) {
+  function alertErrorElement() {
     const alert = document.getElementById('alertMessage');
     const cartHTML = '<div data-testid="common_login__element-invalid-email">';
-    alert.innerHTML = `${cartHTML}<p>${error}</p></div>`;
+    alert.innerHTML = `${cartHTML}<p>email ou senha invalidos</p></div>`;
   }
 
   function submitLock() {
@@ -46,9 +46,8 @@ export default function Login() {
           .setItem('user', JSON.stringify(r.data));
         validUser();
       })
-      .catch((error) => {
-        console.log(error);
-        alertErrorElement(error);
+      .catch(() => {
+        alertErrorElement();
       });
   }
 

@@ -1,12 +1,14 @@
 :root {
 
-  --green_1: #007454;
+  --green_1: #036b52;
 
-  --green_2: #00d18f;
+  --green_2: #2fc18c;
 
-  --purple_1: #520082;
+  --gray_1: #eaf1ef;
 
-  --blue_1: #4900fc;
+  --purple_1: #421981;
+
+  --blue_1: #056cf9;
 }
 
 .navbar {
@@ -14,16 +16,33 @@
   margin-top: 0;
 }
 
-.navbar-btn {
+.cart-container {
+  margin: 0.5em auto;
+  width: 90%;
+}
+
+.cart-total {
+  align-self: flex-end;
+  border: 0;
+  border-radius: 4px;
+  font-size: 1.5em;
+  font-weight: 600;
+  padding: 0.5em 1em;
+  width: 16%;
+}
+
+.navbar-btn, .delete-btn, .cart-btn {
   border: 0;
   font-size: 1em;
   font-weight: 600;
 }
 
+.delete-btn {
+  height: 100%;
+  padding: 0.4em 0;
+}
+
 .cart-btn {
-  border: 0;
-  font-size: 1em;
-  font-weight: 600;
   padding: 0.5em 1em;
   transition: 0.5s;
 }
@@ -45,6 +64,49 @@
 .card-container {
   margin: auto;
   width: 90%;
+}
+
+.cart-table {
+  margin: auto;
+  overflow: hidden;
+  width: 60%;
+}
+
+.table-row {
+  font-weight: 500;
+  padding: 0.25em 0;
+}
+
+.table-row .default-td {
+  padding: 0.4em 0;
+}
+
+.table-row .button-td {
+  padding: 0;
+}
+
+.table-row td:nth-child( 2 ) {
+  padding-left: 0.25em;
+}
+
+.table-row td:nth-child( 1 ) {
+  border-radius: 3px 0 0 3px;
+}
+
+.table-row td:last-child {
+  border-radius: 0 3px 3px 0;
+}
+
+.wd-10 {
+  width: 10%;
+}
+
+.wd-15 {
+  width: 15%;
+}
+
+.wd-30 {
+  width: 30%;
 }
 
 .prod-card {
@@ -76,6 +138,10 @@
   background-color: var(--green_2);
 }
 
+.bg-gray_1 {
+  background-color: var(--gray_1);
+}
+
 .bg-purple-1 {
   background-color: var(--purple_1);
 }
@@ -84,8 +150,12 @@
   background-color: var(--blue_1);
 }
 
-.flex {
+.flex, .flex-column {
   display: flex;
+}
+
+.flex-column {
+  flex-direction: column;
 }
 
 .wrap {
