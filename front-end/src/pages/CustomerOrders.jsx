@@ -83,14 +83,14 @@ export default function CustomerOrders() {
               className="padding"
               data-testid={ `customer_orders__element-order-date--${order.id}` }
             >
-              { formateDate(order.sale_date) }
+              { formateDate(order.saleDate) }
 
             </p>
             <p
               className="padding"
               data-testid={ `customer_orders__element-card-price--${order.id}` }
             >
-              { order.total_price.toString().replace('.', ',') }
+              { order.totalPrice.toString().replace('.', ',') }
 
             </p>
           </div>

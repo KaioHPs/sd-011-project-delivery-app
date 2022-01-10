@@ -13,7 +13,7 @@ const findAllOrdersById = async (token) => {
   const { email } = tokenJwtDecoded(token);
   const customerId = await getCustomerId(email);
   const orders = await sale.findAll({ 
-    where: { user_id: customerId },
+    where: { userId: customerId },
   });
   return orders;
 };
