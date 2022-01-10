@@ -104,7 +104,7 @@ export default function Admin() {
         </button>
       </form>
       { invalid
-        && <p data-testid="admin_manage__element-invalid-register">invalid</p> }
+        && <p data-testid="admin_manage__element-invalid-register">invalido</p> }
     </div>
   );
 }
