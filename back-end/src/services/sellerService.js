@@ -7,7 +7,7 @@ const getAll = async () => {
 };
 
 const getById = async (id) => {
-  const selectedSale = await sale.findByPk({ id });
+  const selectedSale = await sale.findByPk(id);
 
   return selectedSale;
 }
