@@ -5,6 +5,7 @@ import Login from './pages/login';
 import Register from './pages/register';
 import CustomerProducts from './pages/CustomerProducts';
 import Admin from './pages/Admin';
+import CustomerCheckout from './pages/CustomerCheckout';
 
 function App() {
   return (

@@ -9,6 +9,8 @@ export default function Admin() {
   const [password, setPassword] = useState('');
   const [role, setRole] = useState('seller');
   const [disabled, setDisabled] = useState(false);
+  const [user, setUser] = useState({ name: '' });
+  const [invalid, setInvalid] = useState(false);
 
   useEffect(() => {
     const validateValues = () => {
@@ -16,13 +18,28 @@ export default function Admin() {
       setDisabled(isValid);
     };
 
+    const getUser = async () => {
+      const loggedUser = JSON.parse(window.localStorage.getItem('user'));
+      if (loggedUser && loggedUser.token) {
+        setUser(loggedUser);
+      } else {
+        window.location.href = '/login';
+      }
+    };
+
+    getUser();
     validateValues();
   }, [name, email, password]);
 
   const registUser = () => {
     axios.post('http://localhost:3001/register', {
       name, email, password, role,
-    });
+    }, {
+      headers: {
+        authorization: user.token,
+      },
+    })
+      .catch(() => setInvalid(true));
   };
 
   return (
@@ -86,6 +103,8 @@ export default function Admin() {
           CADASTRAR
         </button>
       </form>
+      { invalid
+        && <p data-testid="admin_manage__element-invalid-register">invalid</p> }
     </div>
   );
 }
