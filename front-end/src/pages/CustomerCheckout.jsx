@@ -73,10 +73,14 @@ const CustomerCheckout = () => {
       address: e.target.address.value,
       addressNum: e.target.addressNum.value,
       prods: Object.values(selectedProds),
+    }, {
+      headers: {
+        authorization: user.token,
+      },
     })
       .then((r) => r);
     if (result.status === successfulStatus) {
-      window.localStorage.setItem('deliveryAppCart', JSON.stringify({}));
+      await window.localStorage.removeItem('deliveryAppCart');
       window.location.href = `/customer/orders/${result.data.id}`;
     } else {
       setIsSaleFailed(true);
