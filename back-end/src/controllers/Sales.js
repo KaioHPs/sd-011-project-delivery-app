@@ -1,6 +1,7 @@
-const Sales = require('../services/Sales');
 const Sequelize = require('sequelize');
+const Sales = require('../services/Sales');
 const config = require('../database/config/config');
+
 const db = new Sequelize(config.development);
 
 const createSale = async (req, res, _next) => {

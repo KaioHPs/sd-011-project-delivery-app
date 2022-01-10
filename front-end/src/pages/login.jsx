@@ -1,5 +1,5 @@
-import React from 'react';
-import Axios from 'axios';
+import React, { useEffect } from 'react';
+import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
 export default function Login() {
@@ -8,12 +8,27 @@ export default function Login() {
   const emailRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-z0-9]+\.[a-z]+(\.[a-z]+)?$/i;
   const numberSix = 6;
 
-  window.onload = function pageOnload() {
-    const submitButton = document.getElementById('submitButton');
-    submitButton.disabled = true;
-    window.localStorage.removeItem('user');
-    window.localStorage.removeItem('deliveryAppCart');
-  };
+  useEffect(() => {
+    const validateToken = async (token) => {
+      const isValid = await axios.post('http://localhost:3001/token', { token })
+        .then((r) => r.data.tokenIsValid);
+      return isValid;
+    };
+
+    const getUser = async () => {
+      const loggedUser = JSON.parse(window.localStorage.getItem('user'));
+      if (loggedUser && loggedUser.token && await validateToken(loggedUser.token)) {
+        navigate('/customer/products');
+      }
+    };
+    getUser();
+
+    function pageOnload() {
+      const submitButton = document.getElementById('submitButton');
+      submitButton.disabled = true;
+    }
+    pageOnload();
+  }, [navigate]);
 
   function validUser() {
     window.location.href = '/customer/products';
@@ -39,7 +54,7 @@ export default function Login() {
   async function submitToApi() {
     const email = document.getElementById('email').value;
     const password = document.getElementById('password').value;
-    Axios.post('http://localhost:3001/login', {
+    axios.post('http://localhost:3001/login', {
       email,
       password,
     })

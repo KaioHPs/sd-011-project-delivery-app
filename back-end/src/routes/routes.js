@@ -18,7 +18,7 @@ router.post('/token', jwtValidation.validateToken);
 
 router.post('/token', jwtValidation.validateToken);
 
-router.post('/sales/new',  Sales.createSale);
+router.post('/sales/new', Sales.createSale);
 
 router.get('/users/sellers', Users.getAllSellers);
 

@@ -1,8 +1,8 @@
 const { findAllOrdersById } = require('../services/customerOrdersService');
 
 const ordersList = async (req, res) => {
-const { email } = req.body;
-const allOrders = await findAllOrdersById(email);
+const { token } = req.body;
+const allOrders = await findAllOrdersById(token);
 res.status(200).send(allOrders);
 };
 

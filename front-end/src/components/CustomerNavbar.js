@@ -14,15 +14,22 @@ const CustomerNavbar = ({ name }) => {
     window.location.href = '/customer/orders';
   };
 
+  const toProducts = (e) => {
+    e.preventDefault();
+    window.location.href = '/customer/products';
+  };
+
   return (
     <div className="navbar flex bg-green-1 tc-white pt-1">
       <div className="fg-2 text-center bg-green-2">
-        <span
-          className="navbar-text"
+        <button
+          type="button"
+          onClick={ toProducts }
+          className="navbar-btn fg-1 text-center bg-blue-1 tc-white"
           data-testid="customer_products__element-navbar-link-products"
         >
           Produtos
-        </span>
+        </button>
       </div>
       <button
         className="navbar-btn fg-1 text-center bg-blue-1 tc-white"
