@@ -1,7 +1,6 @@
 const router = require('express').Router();
 const Products = require('../controllers/Products');
 const Users = require('../controllers/Users');
-
 const Sales = require('../controllers/Sales');
 
 const jwtValidation = require('../middlewares/jwtValidation');
@@ -13,8 +12,6 @@ const { ordersList } = require('../controllers/customerOrdersController');
 router.post('/login', login);
 router.post('/register', register);
 router.post('/customer/orders', ordersList);
-
-router.post('/token', jwtValidation.validateToken);
 
 router.post('/token', jwtValidation.validateToken);
 
