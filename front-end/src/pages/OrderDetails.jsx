@@ -11,6 +11,7 @@ import {
 
 const OrderDetails = () => {
   const [order, setOrder] = useState();
+  const [orderReceived, setNewOrder] = useState();
   const { id } = useParams();
 
   useEffect(() => {
@@ -22,6 +23,10 @@ const OrderDetails = () => {
 
     getOrder();
   }, []);
+
+  componentDidMount(() => {
+    setNewOrder(order);
+  });
 
   return (
     <div>
