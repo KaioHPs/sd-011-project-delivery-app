@@ -9,10 +9,13 @@ const createSale = async (req, res, _next) => {
   try {
     const { uId, sId, price, address, addressNum, prods } = req.body;
     const sale = await Sales.createSale({ uId, sId, price, address, addressNum, t });
+    const requests = [];
 
     await prods.forEach(async (prod) => {
-      await Sales.createSaleProduct({ product: prod, currSale: sale, t });
+      requests.push(Sales.createSaleProduct({ product: prod, currSale: sale, t }));
     });
+
+    await Promise.all(requests);
 
     await t.commit();
     return res.status(201).json(sale);
