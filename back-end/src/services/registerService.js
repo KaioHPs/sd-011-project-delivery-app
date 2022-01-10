@@ -12,7 +12,7 @@ const create = async (object) => {
   const newUser = {
     ...object,
     password: hash,
-    role: 'customer',
+    role: object.role ? object.role : 'customer',
   };
 
   const { dataValues } = await user.create(newUser);

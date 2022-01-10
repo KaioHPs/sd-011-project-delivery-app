@@ -13,8 +13,12 @@ export default function Login() {
     submitButton.disabled = true;
   };
 
-  function validUser() {
-    window.location.href = '/customer/products';
+  function validUser(user) {
+    if (user.role === 'customer') {
+      window.location.href = '/customer/products';
+    } else if (user.role === 'administrator') {
+      window.location.href = '/admin/manage';
+    }
   }
 
   function alertErrorElement(error) {
@@ -41,8 +45,10 @@ export default function Login() {
       email,
       password,
     })
-      .then(() => {
-        validUser();
+      .then((r) => {
+        window.localStorage
+          .setItem('user', JSON.stringify(r.data));
+        validUser(r.data);
       })
       .catch((error) => {
         console.log(error);

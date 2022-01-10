@@ -4,6 +4,7 @@ import './App.css';
 import Login from './pages/login';
 import Register from './pages/register';
 import CustomerProducts from './pages/CustomerProducts';
+import Admin from './pages/Admin';
 
 function App() {
   return (
@@ -14,6 +15,10 @@ function App() {
       <Route
         path="/customer/products"
         element={ <CustomerProducts /> }
+      />
+      <Route
+        path="/admin/manage"
+        element={ <Admin /> }
       />
     </Routes>
   );

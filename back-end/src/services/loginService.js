@@ -20,6 +20,7 @@ const { emailAndPasswordExists,
           message: {
            email: findUser.email,
             id: findUser.id,
+            name: findUser.name,
             role: findUser.role,
           },
         };

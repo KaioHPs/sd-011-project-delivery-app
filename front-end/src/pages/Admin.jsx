@@ -1,15 +1,14 @@
-import axios from 'axios';
 import React, { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
+import CustomerNavbar from '../components/CustomerNavbar';
 import validateRegister from '../helpers/validateRegister';
 
-export default function Register() {
+export default function Admin() {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [role, setRole] = useState('seller');
   const [disabled, setDisabled] = useState(false);
-  const [invalid, setInvalid] = useState(false);
-  const navigate = useNavigate();
 
   useEffect(() => {
     const validateValues = () => {
@@ -22,24 +21,19 @@ export default function Register() {
 
   const registUser = () => {
     axios.post('http://localhost:3001/register', {
-      name, email, password,
-    })
-      .then((r) => {
-        window.localStorage
-          .setItem('user', JSON.stringify(r.data));
-        navigate('/customer/products');
-      })
-      .catch(() => setInvalid(true));
+      name, email, password, role,
+    });
   };
 
   return (
     <div>
-      <h1>Cadastro</h1>
+      <CustomerNavbar name="Tryber Admin" />
+      <h1>Cadastrar novo usuário</h1>
       <form>
         <label htmlFor="name">
           Name
           <input
-            data-testid="common_register__input-name"
+            data-testid="admin_manage__input-name"
             id="name"
             type="text"
             placeholder="Seu nome"
@@ -50,7 +44,7 @@ export default function Register() {
         <label htmlFor="email">
           Email
           <input
-            data-testid="common_register__input-email"
+            data-testid="admin_manage__input-email"
             id="email"
             type="text"
             placeholder="Seu email"
@@ -62,15 +56,28 @@ export default function Register() {
           Senha
           <input
             id="password"
-            data-testid="common_register__input-password"
+            data-testid="admin_manage__input-password"
             type="password"
             placeholder="**********"
             value={ password }
             onChange={ ({ target }) => setPassword(target.value) }
           />
         </label>
+        <label htmlFor="role">
+          Tipo
+          <select
+            data-testid="admin_manage__select-role"
+            id="role"
+            value={ role }
+            onChange={ ({ target }) => setRole(target.value) }
+          >
+            <option value="seller">Vendedor</option>
+            <option value="administrator">Administrador</option>
+            <option value="customer">Comprador</option>
+          </select>
+        </label>
         <button
-          data-testid="common_register__button-register"
+          data-testid="admin_manage__button-register"
           id="submitButton"
           type="button"
           disabled={ !disabled }
@@ -79,8 +86,6 @@ export default function Register() {
           CADASTRAR
         </button>
       </form>
-      { invalid
-        && <p data-testid="common_register__element-invalid_register">invalid</p> }
     </div>
   );
 }
