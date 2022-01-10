@@ -20,6 +20,10 @@ function App() {
         path="/admin/manage"
         element={ <Admin /> }
       />
+      <Route
+        path="/customer/checkout"
+        element={ <CustomerCheckout /> }
+      />
     </Routes>
   );
 }

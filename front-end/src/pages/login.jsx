@@ -11,6 +11,8 @@ export default function Login() {
   window.onload = function pageOnload() {
     const submitButton = document.getElementById('submitButton');
     submitButton.disabled = true;
+    window.localStorage.removeItem('user');
+    window.localStorage.removeItem('deliveryAppCart');
   };
 
   function validUser(user) {
