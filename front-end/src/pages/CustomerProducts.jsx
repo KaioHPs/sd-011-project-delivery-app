@@ -72,7 +72,7 @@ const CustomerProducts = () => {
         onClick={ toCart }
         data-testid="customer_products__button-cart"
       >
-        Ver Carrinho R$
+        {'Ver Carrinho R$ '}
         <span data-testid="customer_products__checkout-bottom-value">
           {totalValue.toFixed(2).replace(/\./, ',')}
         </span>
