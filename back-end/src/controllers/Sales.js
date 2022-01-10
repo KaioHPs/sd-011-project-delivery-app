@@ -1,6 +1,7 @@
-const Sales = require('../services/Sales');
 const Sequelize = require('sequelize');
+const Sales = require('../services/Sales');
 const config = require('../database/config/config');
+
 const db = new Sequelize(config.development);
 
 const createSale = async (req, res, _next) => {
@@ -9,9 +10,9 @@ const createSale = async (req, res, _next) => {
     const { uId, sId, price, address, addressNum, prods } = req.body;
     const sale = await Sales.createSale({ uId, sId, price, address, addressNum, t });
 
-    for await (const prod of prods) {
-      await Sales.createSaleProduct({ product: prod, sale, t });
-    }
+    await prods.forEach(async (prod) => {
+      await Sales.createSaleProduct({ product: prod, currSale: sale, t });
+    });
 
     await t.commit();
     return res.status(201).json(sale);
