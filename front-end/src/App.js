@@ -5,6 +5,7 @@ import Login from './pages/login';
 import Register from './pages/register';
 import CustomerProducts from './pages/CustomerProducts';
 import CustomerOrders from './pages/CustomerOrders';
+import Admin from './pages/Admin';
 import CustomerCheckout from './pages/CustomerCheckout';
 
 function App() {
@@ -20,6 +21,14 @@ function App() {
       <Route path="/customer/orders" element={ <CustomerOrders /> } />
       <Route path="/customer/orders/:orderId" element={ <CustomerOrders /> } />
       <Route path="/customer/checkout" element={ <CustomerCheckout /> } />
+      <Route
+        path="/admin/manage"
+        element={ <Admin /> }
+      />
+      <Route
+        path="/customer/checkout"
+        element={ <CustomerCheckout /> }
+      />
     </Routes>
   );
 }

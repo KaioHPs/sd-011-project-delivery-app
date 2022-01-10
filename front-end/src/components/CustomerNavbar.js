@@ -40,7 +40,7 @@ const CustomerNavbar = ({ name }) => {
           className="navbar-text"
           data-testid="customer_products__element-navbar-link-orders"
         >
-          Pedidos
+          { name === 'Tryber Admin' ? 'Gerenciar Usuários' : 'Pedidos'}
         </span>
       </button>
       <div className="fg-4 fs-1 text-center" />

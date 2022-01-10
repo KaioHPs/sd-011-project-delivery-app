@@ -30,8 +30,12 @@ export default function Login() {
     pageOnload();
   }, [navigate]);
 
-  function validUser() {
-    window.location.href = '/customer/products';
+  function validUser(user) {
+    if (user.role === 'customer') {
+      window.location.href = '/customer/products';
+    } else if (user.role === 'administrator') {
+      window.location.href = '/admin/manage';
+    }
   }
 
   function alertErrorElement() {
@@ -61,7 +65,7 @@ export default function Login() {
       .then((r) => {
         window.localStorage
           .setItem('user', JSON.stringify(r.data));
-        validUser();
+        validUser(r.data);
       })
       .catch(() => {
         alertErrorElement();
