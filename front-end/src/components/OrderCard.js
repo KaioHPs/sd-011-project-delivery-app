@@ -1,6 +1,13 @@
 import React from 'react';
 // import PropTypes from 'prop-types';
 import { useNavigate } from 'react-router-dom';
+import {
+  orderDate,
+  deliveryStatus,
+  orderId,
+  price,
+  address,
+} from '../dataTestIds';
 
 // eslint-disable-next-line
 const OrderCard = ({ order }) => {
@@ -15,12 +22,6 @@ const OrderCard = ({ order }) => {
     // eslint-disable-next-line
     total_price: totalPrice, user_id
   } = order;
-
-  const orderDate = `seller_orders__element-order-date-${id}`;
-  const deliveryStatus = `seller_orders__element-delivery-status-${id}`;
-  const orderId = `seller_orders__element-order-id-${id}`;
-  const price = `seller_orders__element-card-price-${id}`;
-  const address = `seller_orders__element-card-address-${id}`;
   const navigate = useNavigate();
 
   return (
@@ -30,12 +31,12 @@ const OrderCard = ({ order }) => {
       onClick={() => navigate(`/seller/orders/${id}`)}
     >
       <div className="order-container">
-        <span data-test-id={ orderId }>{ `Pedido 000${id}` }</span>
-        <span data-testid={ deliveryStatus }>{ status }</span>
-        <span data-testid={ orderDate }>{ saleDate }</span>
-        <span data-testid={ price }>{ totalPrice }</span>
+        <span data-test-id={ `${orderId}${id}` }>{ `Pedido 000${id}` }</span>
+        <span data-testid={ `${deliveryStatus}${id}` }>{ status }</span>
+        <span data-testid={ `${orderDate}${id}` }>{ saleDate }</span>
+        <span data-testid={ `${price}${id}` }>{ totalPrice }</span>
         <span
-          data-testid={ address }
+          data-testid={ `${address}${id}` }
         >
           { `${deliveryAddress}, ${deliveryNumber}` }
         </span>
