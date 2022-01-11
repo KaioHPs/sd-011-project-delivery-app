@@ -1,5 +1,5 @@
-import React from 'react';
-import Axios from 'axios';
+import React, { useEffect } from 'react';
+import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
 export default function Login() {
@@ -8,21 +8,40 @@ export default function Login() {
   const emailRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-z0-9]+\.[a-z]+(\.[a-z]+)?$/i;
   const numberSix = 6;
 
-  window.onload = function pageOnload() {
-    const submitButton = document.getElementById('submitButton');
-    submitButton.disabled = true;
-    window.localStorage.removeItem('user');
-    window.localStorage.removeItem('deliveryAppCart');
-  };
+  useEffect(() => {
+    const validateToken = async (token) => {
+      const isValid = await axios.post('http://localhost:3001/token', { token })
+        .then((r) => r.data.tokenIsValid);
+      return isValid;
+    };
 
-  function validUser() {
-    window.location.href = '/customer/products';
+    const getUser = async () => {
+      const loggedUser = JSON.parse(window.localStorage.getItem('user'));
+      if (loggedUser && loggedUser.token && await validateToken(loggedUser.token)) {
+        navigate('/customer/products');
+      }
+    };
+    getUser();
+
+    function pageOnload() {
+      const submitButton = document.getElementById('submitButton');
+      submitButton.disabled = true;
+    }
+    pageOnload();
+  }, [navigate]);
+
+  function validUser(user) {
+    if (user.role === 'customer') {
+      window.location.href = '/customer/products';
+    } else if (user.role === 'administrator') {
+      window.location.href = '/admin/manage';
+    }
   }
 
-  function alertErrorElement(error) {
+  function alertErrorElement() {
     const alert = document.getElementById('alertMessage');
     const cartHTML = '<div data-testid="common_login__element-invalid-email">';
-    alert.innerHTML = `${cartHTML}<p>${error}</p></div>`;
+    alert.innerHTML = `${cartHTML}<p>email ou senha invalidos</p></div>`;
   }
 
   function submitLock() {
@@ -39,18 +58,17 @@ export default function Login() {
   async function submitToApi() {
     const email = document.getElementById('email').value;
     const password = document.getElementById('password').value;
-    Axios.post('http://localhost:3001/login', {
+    axios.post('http://localhost:3001/login', {
       email,
       password,
     })
       .then((r) => {
         window.localStorage
           .setItem('user', JSON.stringify(r.data));
-        validUser();
+        validUser(r.data);
       })
-      .catch((error) => {
-        console.log(error);
-        alertErrorElement(error);
+      .catch(() => {
+        alertErrorElement();
       });
   }
 

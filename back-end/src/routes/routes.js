@@ -7,9 +7,11 @@ const jwtValidation = require('../middlewares/jwtValidation');
 
 const { login } = require('../controllers/loginController');
 const { register } = require('../controllers/registerController');
+const { ordersList } = require('../controllers/customerOrdersController');
 
 router.post('/login', login);
 router.post('/register', register);
+router.post('/customer/orders', ordersList);
 
 router.post('/token', jwtValidation.validateToken);
 
