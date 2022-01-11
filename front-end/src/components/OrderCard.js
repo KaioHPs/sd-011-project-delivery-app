@@ -14,13 +14,21 @@ const OrderCard = ({ order }) => {
   // eslint-disable-next-line
   const {
     // eslint-disable-next-line
-    id,deliveryAddress,
+    id, deliveryAddress,
     // eslint-disable-next-line
     deliveryNumber, saleDate,
     // eslint-disable-next-line
     status, totalPrice,
   } = order;
+
   const navigate = useNavigate();
+  const key = 13;
+
+  const handleKeyDown = (e) => {
+    if (e.keyCode === key) {
+      return () => navigate(`/seller/orders/${id}`);
+    }
+  };
 
   const orderDate = `seller_orders__element-order-date-${id}`;
   const deliveryStatus = `seller_orders__element-delivery-status-${id}`;
@@ -33,7 +41,9 @@ const OrderCard = ({ order }) => {
     <div // eslint-disable-line
       className="order-card"
       // eslint-disable-next-line
-      onClick={() => navigate(`/seller/orders/${id}`)}
+      onClick={ () => navigate(`/seller/orders/${id}`) }
+      onKeyDown={ () => handleKeyDown() }
+      role="button"
     >
       <div className="order-container">
         <span data-test-id={ `${orderId}${id}` }>{ `Pedido 000${id}` }</span>
