@@ -44,7 +44,7 @@ const OrderCard = ({ order }) => {
       onClick={ () => navigate(`/seller/orders/${id}`) }
       onKeyDown={ () => handleKeyDown() }
       role="button"
-      tabIndex={0}
+      tabIndex={ 0 }
     >
       <div className="order-container">
         <span data-test-id={ `${orderId}${id}` }>{ `Pedido 000${id}` }</span>
