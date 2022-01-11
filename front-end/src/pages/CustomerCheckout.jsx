@@ -8,7 +8,7 @@ const successfulStatus = 201;
 const CustomerCheckout = () => {
   const [selectedProds, setSelectedProds] = useState({});
   const [allSellers, setAllSellers] = useState([]);
-  const [user, setUser] = useState({ name: '' });
+  const [user, setUser] = useState({ name: '', role: '' });
   const [totalValue, settotalValue] = useState(0);
   const [isSaleFailed, setIsSaleFailed] = useState(false);
 
@@ -89,7 +89,7 @@ const CustomerCheckout = () => {
 
   return (
     <div>
-      <CustomerNavbar name={ user.name } />
+      <CustomerNavbar name={ user.name } role={ user.role } focusedPage="products" />
       {isSaleFailed ? <div>Falha na compra.</div> : ''}
       {Object.values(selectedProds).length ? (
         <div className="cart-container flex-column">

@@ -12,7 +12,7 @@ const dataStatus = 'customer_order_details__element-order-details-label-delivery
 
 const CustomerOrderDetails = () => {
   const { orderId } = useParams();
-  const [user, setUser] = useState({ name: '' });
+  const [user, setUser] = useState({ name: '', role: '' });
   const [order, setOrder] = useState({});
   // const [totalValue, settotalValue] = useState(0);
 
@@ -43,7 +43,7 @@ const CustomerOrderDetails = () => {
 
   return (
     <div>
-      <CustomerNavbar name={ user.name } />
+      <CustomerNavbar name={ user.name } role={ user.role } focusedPage="orders" />
       {order.id ? (
         <div className="details-container flex">
           <span>

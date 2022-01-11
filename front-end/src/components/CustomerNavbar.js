@@ -2,7 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import './CustomerNavbar.css';
 
-const CustomerNavbar = ({ name }) => {
+const focusedClass = 'navbar-btn fg-2 text-center bg-green-2 tc-white';
+const unfocusedClass = 'navbar-btn fg-2 text-center bg-green-1 tc-white';
+
+const CustomerNavbar = ({ name, role, focusedPage }) => {
   const logOut = () => {
     localStorage.removeItem('user');
     localStorage.removeItem('deliveryAppCart');
@@ -21,26 +24,27 @@ const CustomerNavbar = ({ name }) => {
 
   return (
     <div className="navbar flex bg-green-1 tc-white pt-1">
-      <div className="fg-2 text-center bg-green-2">
+      { role === 'administrator' || role === 'seller' ? '' : (
         <button
           type="button"
           onClick={ toProducts }
-          className="navbar-btn fg-1 text-center bg-blue-1 tc-white"
+          className={ focusedPage === 'products' ? focusedClass : unfocusedClass }
           data-testid="customer_products__element-navbar-link-products"
         >
           Produtos
         </button>
-      </div>
+      )}
       <button
-        className="navbar-btn fg-1 text-center bg-blue-1 tc-white"
+        className={ focusedPage === 'products' ? unfocusedClass : focusedClass }
         type="button"
+        disabled={ role === 'administrator' || role === 'seller' }
         onClick={ toOrder }
       >
         <span
           className="navbar-text"
           data-testid="customer_products__element-navbar-link-orders"
         >
-          { name === 'Tryber Admin' ? 'Gerenciar Usuários' : 'Pedidos'}
+          { role === 'administrator' ? 'Gerenciar Usuários' : 'Pedidos'}
         </span>
       </button>
       <div className="fg-4 fs-1 text-center" />
@@ -70,6 +74,8 @@ const CustomerNavbar = ({ name }) => {
 
 CustomerNavbar.propTypes = {
   name: PropTypes.string.isRequired,
+  role: PropTypes.string.isRequired,
+  focusedPage: PropTypes.string.isRequired,
 };
 
 export default CustomerNavbar;
