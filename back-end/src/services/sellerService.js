@@ -10,7 +10,7 @@ const getById = async (id) => {
   const selectedSale = await sale.findByPk(id);
 
   return selectedSale;
-}
+};
 
 module.exports = {
   getAll,

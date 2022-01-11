@@ -9,15 +9,10 @@ import {
   address,
 } from '../dataTestIds';
 
-// eslint-disable-next-line
 const OrderCard = ({ order }) => {
-  // eslint-disable-next-line
   const {
-    // eslint-disable-next-line
     id, deliveryAddress,
-    // eslint-disable-next-line
     deliveryNumber, saleDate,
-    // eslint-disable-next-line
     status, totalPrice,
   } = order;
 
@@ -38,9 +33,8 @@ const OrderCard = ({ order }) => {
   const navigate = useNavigate();
 
   return (
-    <div // eslint-disable-line
+    <div
       className="order-card"
-      // eslint-disable-next-line
       onClick={ () => navigate(`/seller/orders/${id}`) }
       onKeyDown={ () => handleKeyDown() }
       role="button"
