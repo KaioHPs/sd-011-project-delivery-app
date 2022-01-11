@@ -7,7 +7,7 @@ import {
   orderId,
   price,
   address,
-} from '../dataTestIds';
+} from '../dataTestIds/dataSellerOrders';
 
 const OrderCard = ({ order }) => {
   const {
@@ -52,10 +52,10 @@ OrderCard.propTypes = {
   order: PropTypes.shape({
     id: PropTypes.number,
     deliveryAddress: PropTypes.string,
-    deliveryNumber: PropTypes.number,
+    deliveryNumber: PropTypes.string,
     saleDate: PropTypes.string,
     status: PropTypes.string,
-    totalPrice: PropTypes.number,
+    totalPrice: PropTypes.string,
   }).isRequired,
 };
 
