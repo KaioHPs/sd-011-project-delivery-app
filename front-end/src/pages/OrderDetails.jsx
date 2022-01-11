@@ -2,12 +2,13 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
 import {
+  orderId,
   orderDate,
   deliveryStatus,
-  orderId,
-  price,
-  address,
-} from '../dataTestIds';
+  preparingCheck,
+  dispatchCheck,
+  totalPrice,
+} from '../dataTestIds/dataOrderDetails';
 
 const OrderDetails = () => {
   const [order, setOrder] = useState();
@@ -25,17 +26,35 @@ const OrderDetails = () => {
   }, [id]);
 
   if (order) {
+    const date = new Date(order.saleDate).toLocaleDateString();
     return (
       <div>
         <div className="order-container">
-          <span data-test-id={ `${orderId}${id}` }>{ `Pedido 000${order.id}` }</span>
+          <span data-test-id={ `${orderId}${id}` }>{ `PEDIDO 000${order.id}` }</span>
+          <br />
+          <span data-testid={ `${orderDate}${id}` }>
+            { date }
+          </span>
+          <br />
           <span data-testid={ `${deliveryStatus}${id}` }>{ order.status }</span>
-          <span data-testid={ `${orderDate}${id}` }>{ order.saleDate }</span>
-          <span data-testid={ `${price}${id}` }>{ order.totalPrice }</span>
-          <span
-            data-testid={ `${address}${id}` }
+          <br />
+          <button
+            data-testid={ `${preparingCheck}${id}` }
+            type="button"
           >
-            { `${order.deliveryAddress}, ${order.deliveryNumber}` }
+            PREPARAR PEDIDO
+          </button>
+          <button
+            data-testid={ `${dispatchCheck}${id}` }
+            type="button"
+          >
+            SAIU PARA ENTREGA
+          </button>
+          <br />
+          <span
+            data-testid={ `${totalPrice}${id}` }
+          >
+            { `Total: ${order.totalPrice}` }
           </span>
         </div>
       </div>

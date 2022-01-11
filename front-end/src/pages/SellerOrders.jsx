@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from 'react';
-// eslint-disable-next-line
 import axios from 'axios';
 import OrderCard from '../components/OrderCard';
-import CustomerNavbar from '../components/CustomerNavbar';
 
 const SellerOrders = () => {
   const [orders, setOrders] = useState([]);
@@ -19,7 +17,6 @@ const SellerOrders = () => {
 
   return (
     <div>
-      <CustomerNavbar />
       <div>
         { orders.map((order) => (
           <OrderCard
