@@ -21,6 +21,17 @@ const createOrder = async (order) => {
   return orderCreated;
 };
 
+const updateOrder = async (id, status) => {
+  const newStatus = sale
+    .update(
+      { status },
+      { where: { id } },
+      );
+
+  return newStatus;
+};
+
 module.exports = {
   createOrder,
+  updateOrder,
 };
