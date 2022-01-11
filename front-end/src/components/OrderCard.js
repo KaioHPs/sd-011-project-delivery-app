@@ -1,5 +1,5 @@
 import React from 'react';
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 import { useNavigate } from 'react-router-dom';
 import {
   orderDate,
@@ -18,9 +18,7 @@ const OrderCard = ({ order }) => {
     // eslint-disable-next-line
     deliveryNumber, saleDate,
     // eslint-disable-next-line
-    sellerId, status,
-    // eslint-disable-next-line
-    totalPrice, userId
+    status, totalPrice,
   } = order;
   const navigate = useNavigate();
 
@@ -52,11 +50,15 @@ const OrderCard = ({ order }) => {
   );
 };
 
-// OrderCard.PropTypes = {
-//   order: PropTypes.shape({
-//     id: PropTypes.number,
-
-//   })
-// }
+OrderCard.propTypes = {
+  order: PropTypes.shape({
+    id: PropTypes.number,
+    deliveryAddress: PropTypes.string,
+    deliveryNumber: PropTypes.number,
+    saleDate: PropTypes.string,
+    status: PropTypes.string,
+    totalPrice: PropTypes.number,
+  }).isRequired,
+};
 
 export default OrderCard;
