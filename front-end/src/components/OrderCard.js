@@ -43,7 +43,8 @@ const OrderCard = ({ order }) => {
       // eslint-disable-next-line
       onClick={ () => navigate(`/seller/orders/${id}`) }
       onKeyDown={ () => handleKeyDown() }
-      role="row"
+      role="button"
+      tabIndex={0}
     >
       <div className="order-container">
         <span data-test-id={ `${orderId}${id}` }>{ `Pedido 000${id}` }</span>
