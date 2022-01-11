@@ -14,13 +14,13 @@ const OrderCard = ({ order }) => {
   // eslint-disable-next-line
   const {
     // eslint-disable-next-line
-    id, delivery_address: deliveryAddress,
+    id,deliveryAddress,
     // eslint-disable-next-line
-    delivery_number: deliveryNumber, sale_date: saleDate,
+    deliveryNumber, saleDate,
     // eslint-disable-next-line
-    seller_id: sellerId, status,
+    sellerId, status,
     // eslint-disable-next-line
-    total_price: totalPrice, user_id
+    totalPrice, userId
   } = order;
   const navigate = useNavigate();
 

@@ -36,7 +36,7 @@ function App() {
         path="/seller/orders/:id"
         element={ <OrderDetails /> }
       />
-      <Route 
+      <Route
         path="/customer/checkout"
         element={ <CustomerCheckout /> }
       />
