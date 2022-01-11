@@ -21,26 +21,26 @@ const OrderDetails = () => {
     };
 
     getOrder();
-  }, []);
+  }, [id]);
 
-  return (
-    <div>
-      {
-        order
-          ? <div className="order-container">
-            <span data-test-id={ `${orderId}${id}` }>{ `Pedido 000${order.id}` }</span>
-            <span data-testid={ `${deliveryStatus}${id}` }>{ order.status }</span>
-            <span data-testid={ `${orderDate}${id}` }>{ order.saleDate }</span>
-            <span data-testid={ `${price}${id}` }>{ order.totalPrice }</span>
-            <span
-              data-testid={ `${address}${id}` }
-            >
-              { `${order.deliveryAddress}, ${order.deliveryNumber}` }
-            </span>
-            {/* eslint-disable-next-line */}
-          </div> : null
-      }
-    </div>
+  if (order) {
+    return (
+      <div>
+        <div className="order-container">
+          <span data-test-id={ `${orderId}${id}` }>{ `Pedido 000${order.id}` }</span>
+          <span data-testid={ `${deliveryStatus}${id}` }>{ order.status }</span>
+          <span data-testid={ `${orderDate}${id}` }>{ order.saleDate }</span>
+          <span data-testid={ `${price}${id}` }>{ order.totalPrice }</span>
+          <span
+            data-testid={ `${address}${id}` }
+          >
+            { `${order.deliveryAddress}, ${order.deliveryNumber}` }
+          </span>
+        </div>
+      </div>
+    );
+  } return (
+    <div>Carregando pedido...</div>
   );
 };
 
