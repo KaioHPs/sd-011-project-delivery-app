@@ -1,7 +1,5 @@
 const { sale, salesProduct } = require('../database/models');
 
-/* eslint-disable camelcase */
-
 const createSale = async ({ uId, sId, price, address, addressNum, t }) => {
   const { dataValues } = await sale.create({ 
     userId: uId,
