@@ -9,7 +9,7 @@ export default function Admin() {
   const [password, setPassword] = useState('');
   const [role, setRole] = useState('seller');
   const [disabled, setDisabled] = useState(false);
-  const [user, setUser] = useState({ name: '' });
+  const [user, setUser] = useState({ role: '' });
   const [invalid, setInvalid] = useState(false);
 
   useEffect(() => {
@@ -44,7 +44,7 @@ export default function Admin() {
 
   return (
     <div>
-      <CustomerNavbar name="Tryber Admin" />
+      <CustomerNavbar name="Tryber Admin" role={ user.role } focusedPage="orders" />
       <h1>Cadastrar novo usuário</h1>
       <form>
         <label htmlFor="name">

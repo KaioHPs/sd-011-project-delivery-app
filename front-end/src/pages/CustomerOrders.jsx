@@ -5,7 +5,7 @@ import './CustomerOrders.css';
 
 export default function CustomerOrders() {
   const [orders, setOrders] = useState([]);
-  const [userName, setUserName] = useState('');
+  const [user, setUser] = useState({ name: '', role: '' });
 
   function formateDate(date) {
     const newDate = new Date(date);
@@ -46,7 +46,7 @@ export default function CustomerOrders() {
     const getUser = async () => {
       const loggedUser = JSON.parse(window.localStorage.getItem('user'));
       if (loggedUser && loggedUser.token && await validateToken(loggedUser.token)) {
-        setUserName(loggedUser.name);
+        setUser(loggedUser);
       }
     };
     getUser();
@@ -54,7 +54,7 @@ export default function CustomerOrders() {
 
   return (
     <div>
-      <CustomerNavbar name={ userName } />
+      <CustomerNavbar name={ user.name } role={ user.role } focusedPage="orders" />
       {
         orders.map((order) => (
           <div

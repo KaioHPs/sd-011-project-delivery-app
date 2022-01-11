@@ -6,7 +6,7 @@ import CustomerNavbar from '../components/CustomerNavbar';
 const CustomerProducts = () => {
   const [products, setProducts] = useState([]);
   const [selectedProds, setSelectedProds] = useState({});
-  const [userName, setUserName] = useState('');
+  const [user, setUser] = useState({ name: '', role: '' });
   const [totalValue, settotalValue] = useState(0);
 
   useEffect(() => {
@@ -19,7 +19,7 @@ const CustomerProducts = () => {
     const getUser = async () => {
       const loggedUser = JSON.parse(window.localStorage.getItem('user'));
       if (loggedUser && loggedUser.token && await validateToken(loggedUser.token)) {
-        setUserName(loggedUser.name);
+        setUser(loggedUser);
       } else {
         window.location.href = '/login';
       }
@@ -56,7 +56,7 @@ const CustomerProducts = () => {
 
   return (
     <div>
-      <CustomerNavbar name={ userName } />
+      <CustomerNavbar name={ user.name } role={ user.role } focusedPage="products" />
       <div className="card-container flex wrap">
         { products.map((p) => (<ProductCard
           key={ `${p.id} - ${p.name}` }

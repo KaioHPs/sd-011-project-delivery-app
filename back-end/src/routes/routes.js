@@ -16,6 +16,7 @@ router.post('/customer/orders', ordersList);
 router.post('/token', jwtValidation.validateToken);
 
 router.post('/sales/new', Sales.createSale);
+router.get('/sales/details/:saleId', Sales.getSaleById);
 
 router.get('/users/sellers', Users.getAllSellers);
 
