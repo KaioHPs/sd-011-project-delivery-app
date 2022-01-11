@@ -47,7 +47,11 @@
   transition: 0.5s;
 }
 
-.cart-btn:disabled {
+.delivery-btn {
+  border-radius: 3px;
+}
+
+.cart-btn:disabled, .delivery-btn:disabled {
   filter: grayscale(1);
   transition: 0.5s;
 }
@@ -61,7 +65,7 @@
   vertical-align: middle;
 }
 
-.card-container {
+.card-container, .details-container {
   margin: auto;
   width: 90%;
 }
@@ -107,6 +111,10 @@
 
 .wd-30 {
   width: 30%;
+}
+
+.wd-45 {
+  width: 45%;
 }
 
 .prod-card {

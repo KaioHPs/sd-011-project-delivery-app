@@ -7,6 +7,7 @@ import CustomerProducts from './pages/CustomerProducts';
 import CustomerOrders from './pages/CustomerOrders';
 import Admin from './pages/Admin';
 import CustomerCheckout from './pages/CustomerCheckout';
+import CustomerOrderDetails from './pages/CustomerOrderDetails';
 
 function App() {
   return (
@@ -19,7 +20,7 @@ function App() {
         element={ <CustomerProducts /> }
       />
       <Route path="/customer/orders" element={ <CustomerOrders /> } />
-      <Route path="/customer/orders/:orderId" element={ <CustomerOrders /> } />
+      <Route path="/customer/orders/:orderId" element={ <CustomerOrderDetails /> } />
       <Route path="/customer/checkout" element={ <CustomerCheckout /> } />
       <Route
         path="/admin/manage"

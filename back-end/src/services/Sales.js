@@ -25,7 +25,15 @@ const createSaleProduct = async ({ product, currSale, t }) => {
   return dataValues;
 };
 
+const getSaleById = async ({ saleId }) => {
+  const { dataValues } = await sale.findByPk(saleId, { 
+    include: ['products', 'seller'],
+  });
+  return dataValues;
+};
+
 module.exports = {
   createSale,
   createSaleProduct,
+  getSaleById,
 };
