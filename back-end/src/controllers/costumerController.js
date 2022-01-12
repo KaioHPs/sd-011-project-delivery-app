@@ -21,10 +21,10 @@ const updateOrder = async (req, res) => {
   } catch (error) {
     return res.status(500).json({ message: error });
   }
-}
+};
 
 module.exports = {
   createOrder,
-  editOrder,
+  updateOrder,
   updateOrder,
 };
