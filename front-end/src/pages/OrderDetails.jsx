@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
+import CustomerNavbar from '../components/CustomerNavbar';
+import { preparingButton, dispatchButton } from '../helpers/buttonsHelper';
 import {
   orderId,
   orderDate,
@@ -10,13 +12,13 @@ import {
   totalPrice,
 } from '../dataTestIds/dataOrderDetails';
 
+const preparando = 'PREPARANDO';
+const transito = 'EM TRANSITO';
+
 const OrderDetails = () => {
   const [order, setOrder] = useState();
+  const [user, setUser] = useState({ name: '', role: '' });
   const { id } = useParams();
-  const entregue = 'ENTREGUE';
-  const preparando = 'PREPARANDO';
-  const transito = 'EM TRANSITO';
-  const pendente = 'PENDENTE';
 
   useEffect(() => {
     const getOrder = async () => {
@@ -26,6 +28,21 @@ const OrderDetails = () => {
     };
 
     getOrder();
+
+    const validateToken = async (token) => {
+      const isValid = await axios.post('http://localhost:3001/token', { token })
+        .then((r) => r.data.tokenIsValid);
+      return isValid;
+    };
+
+    const getUser = async () => {
+      const loggedUser = JSON.parse(window.localStorage.getItem('user'));
+      if (loggedUser && loggedUser.token && await validateToken(loggedUser.token)) {
+        setUser(loggedUser);
+      }
+    };
+
+    getUser();
   }, [id]);
 
   const updateStatus = async (newStatus) => {
@@ -37,28 +54,12 @@ const OrderDetails = () => {
     window.location.reload();
   };
 
-  const preparingButton = () => {
-    const actualStatus = order.status;
-    if (actualStatus === preparando) return true;
-    if (actualStatus === entregue) return true;
-    if (actualStatus === transito) return true;
-
-    return false;
-  };
-
-  const dispatchButton = () => {
-    const actualStatus = order.status;
-    if (actualStatus === pendente) return true;
-    if (actualStatus === transito) return true;
-    if (actualStatus === entregue) return true;
-
-    return false;
-  };
-
   if (order) {
     const date = new Date(order.saleDate).toLocaleDateString();
+    const actualStatus = order.status;
     return (
       <div>
+        <CustomerNavbar name={ user.name } role={ user.role } focusedPage="orders" />
         <div className="order-container">
           <span data-test-id={ `${orderId}${id}` }>{ `PEDIDO 000${order.id}` }</span>
           <br />
@@ -72,7 +73,7 @@ const OrderDetails = () => {
             data-testid={ `${preparingCheck}${id}` }
             type="button"
             onClick={ () => { updateStatus(preparando); } }
-            disabled={ preparingButton() }
+            disabled={ preparingButton(actualStatus) }
           >
             PREPARAR PEDIDO
           </button>
@@ -80,7 +81,7 @@ const OrderDetails = () => {
             data-testid={ `${dispatchCheck}${id}` }
             type="button"
             onClick={ () => { updateStatus(transito); } }
-            disabled={ dispatchButton() }
+            disabled={ dispatchButton(actualStatus) }
 
           >
             SAIU PARA ENTREGA
