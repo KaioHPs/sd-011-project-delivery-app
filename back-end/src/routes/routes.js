@@ -26,6 +26,6 @@ router.post('/register', register);
 router.post('/token', jwtValidation.validateToken);
 router.post('/sales/new', Sales.createSale);
 
-router.put('/seller/orders/:id', customerController.updateOrder)
+router.put('/seller/orders/:id', customerController.updateOrder);
 
 module.exports = router;
