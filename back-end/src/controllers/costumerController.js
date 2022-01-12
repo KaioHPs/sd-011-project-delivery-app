@@ -17,7 +17,7 @@ const updateOrder = async (req, res) => {
 
     const orderUpdated = await costumerService.updateOrder(id, status);
     
-    return res.status(200).json({ message: `Teste ${orderUpdated}`});
+    return res.status(200).json(orderUpdated);
   } catch (error) {
     return res.status(500).json({ message: error });
   }

@@ -22,11 +22,12 @@ const createOrder = async (order) => {
 };
 
 const updateOrder = async (id, status) => {
-  const newStatus = sale
+  const newStatus = await sale
     .update(
       { status },
       { where: { id } },
-      );
+      )
+    .then(() => sale.findByPk(id));
 
   return newStatus;
 };
