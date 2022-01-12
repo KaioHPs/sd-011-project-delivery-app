@@ -17,6 +17,7 @@ const OrderCard = ({ order }) => {
   } = order;
 
   const key = 13;
+  console.log(key);
   const navigate = useNavigate();
 
   const handleKeyDown = (e) => {
