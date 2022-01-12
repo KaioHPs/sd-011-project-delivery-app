@@ -12,7 +12,6 @@ import {
 
 const OrderDetails = () => {
   const [order, setOrder] = useState();
-  const [orderReceived, setNewOrder] = useState();
   const { id } = useParams();
 
   useEffect(() => {

@@ -17,10 +17,6 @@ router.get('/users/sellers', Users.getAllSellers);
 router.get('/customer/products', Products.getAllProducts);
 
 router.post('/customer/orders', customerController.createOrder);
-
-
-router.get('/seller/orders', sellerController.getAll);
-router.post('/customer/orders', customerController.createOrder);
 router.post('/login', login);
 router.post('/register', register);
 router.post('/token', jwtValidation.validateToken);

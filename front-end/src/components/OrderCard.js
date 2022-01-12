@@ -16,8 +16,8 @@ const OrderCard = ({ order }) => {
     status, totalPrice,
   } = order;
 
-  const navigate = useNavigate();
   const key = 13;
+  const navigate = useNavigate();
 
   const handleKeyDown = (e) => {
     if (e.keyCode === key) {
@@ -25,18 +25,11 @@ const OrderCard = ({ order }) => {
     }
   };
 
-  const orderDate = `seller_orders__element-order-date-${id}`;
-  const deliveryStatus = `seller_orders__element-delivery-status-${id}`;
-  const orderId = `seller_orders__element-order-id-${id}`;
-  const price = `seller_orders__element-card-price-${id}`;
-  const address = `seller_orders__element-card-address-${id}`;
-  const navigate = useNavigate();
-
   return (
     <div
       className="order-card"
       onClick={ () => navigate(`/seller/orders/${id}`) }
-      onKeyDown={ () => handleKeyDown() }
+      onKeyDown={ (e) => handleKeyDown(e) }
       role="button"
       tabIndex={ 0 }
     >
