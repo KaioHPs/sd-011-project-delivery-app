@@ -11,13 +11,12 @@ const dataDate = 'customer_order_details__element-order-details-label-order-date
 const dataStatus = 'customer_order_details__element-order-details-label-delivery-status';
 
 const CustomerOrderDetails = () => {
+  const { orderId } = useParams();
   const [user, setUser] = useState({ name: '', role: '' });
   const [order, setOrder] = useState({});
   // const [totalValue, settotalValue] = useState(0);
 
   useEffect(() => {
-    const { orderId } = useParams();
-
     const validateToken = async (token) => {
       const isValid = await axios.post('http://localhost:3001/token', { token })
         .then((r) => r.data.tokenIsValid);
