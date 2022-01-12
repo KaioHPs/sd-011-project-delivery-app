@@ -35,14 +35,20 @@ const OrderCard = ({ order }) => {
     >
       <div className="order-container">
         <span data-test-id={ `${orderId}${id}` }>{ `Pedido 000${id}` }</span>
+        <br />
         <span data-testid={ `${deliveryStatus}${id}` }>{ status }</span>
+        <br />
         <span data-testid={ `${orderDate}${id}` }>{ saleDate }</span>
+        <br />
         <span data-testid={ `${price}${id}` }>{ totalPrice }</span>
         <span
           data-testid={ `${address}${id}` }
         >
           { `${deliveryAddress}, ${deliveryNumber}` }
         </span>
+        <br />
+        <br />
+
       </div>
     </div>
   );
