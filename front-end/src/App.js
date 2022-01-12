@@ -37,14 +37,6 @@ function App() {
         element={ <OrderDetails /> }
       />
       <Route
-        path="/seller/orders"
-        element={ <SellerOrders /> }
-      />
-      <Route
-        path="/seller/orders/:id"
-        element={ <OrderDetails /> }
-      />
-      <Route
         path="/customer/checkout"
         element={ <CustomerCheckout /> }
       />
