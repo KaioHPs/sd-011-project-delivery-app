@@ -35,6 +35,8 @@ export default function Login() {
       window.location.href = '/customer/products';
     } else if (user.role === 'administrator') {
       window.location.href = '/admin/manage';
+    } else if (user.role === 'seller') {
+      window.location.href = '/seller/orders';
     }
   }
 

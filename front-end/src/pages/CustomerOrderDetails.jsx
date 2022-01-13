@@ -23,6 +23,8 @@ const CustomerOrderDetails = () => {
       return isValid;
     };
 
+    validateToken();
+
     const getUser = async () => {
       const loggedUser = JSON.parse(window.localStorage.getItem('user'));
       if (loggedUser && loggedUser.token && await validateToken(loggedUser.token)) {

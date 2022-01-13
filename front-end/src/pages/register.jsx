@@ -1,5 +1,7 @@
+// eslint-disable-next-line
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
+// eslint-disable-next-line
 import { useNavigate } from 'react-router-dom';
 import validateRegister from '../helpers/validateRegister';
 
