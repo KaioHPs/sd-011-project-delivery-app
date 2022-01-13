@@ -60,7 +60,7 @@ const OrderDetails = () => {
   };
 
   if (order) {
-    const date = new Date(order.saleDate).toLocaleDateString();
+    const date = new Date(order.saleDate).toLocaleDateString('pt-br');
     const totalPriceOrder = order.totalPrice.replace(/\./, ',');
     return (
       <div>
