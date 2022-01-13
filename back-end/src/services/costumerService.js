@@ -15,7 +15,7 @@ const createOrder = async (order) => {
       deliveryAddress,
       deliveryNumber,
       saleDate,
-      status: 'PENDENTE',
+      status: 'Pendente',
     });
 
   return orderCreated;

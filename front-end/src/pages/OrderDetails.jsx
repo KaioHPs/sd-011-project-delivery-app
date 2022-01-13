@@ -12,19 +12,24 @@ import {
   totalPrice,
 } from '../dataTestIds/dataOrderDetails';
 
-const preparando = 'PREPARANDO';
-const transito = 'EM TRANSITO';
+const preparando = 'Preparando';
+const transito = 'Em Trânsito';
+const padValue = 4;
 
 const OrderDetails = () => {
   const [order, setOrder] = useState();
   const [user, setUser] = useState({ name: '', role: '' });
+  const [actualStatusOrder, setOrderStatus] = useState('');
+
   const { id } = useParams();
 
   useEffect(() => {
     const getOrder = async () => {
       const orderDetail = await axios.get(`http://localhost:3001/seller/orders/${id}`)
         .then((o) => o.data);
+      console.log(orderDetail);
       setOrder(orderDetail);
+      setOrderStatus(orderDetail.status);
     };
 
     getOrder();
@@ -51,46 +56,54 @@ const OrderDetails = () => {
 
     console.log(statusUpdated);
 
-    window.location.reload();
+    setOrderStatus(newStatus);
   };
 
   if (order) {
     const date = new Date(order.saleDate).toLocaleDateString();
-    const actualStatus = order.status;
+    const totalPriceOrder = order.totalPrice.replace(/\./, ',');
     return (
       <div>
         <CustomerNavbar name={ user.name } role={ user.role } focusedPage="orders" />
         <div className="order-container">
-          <span data-test-id={ `${orderId}${id}` }>{ `PEDIDO 000${order.id}` }</span>
+          <span>
+            {'Pedido '}
+            <span data-testid={ `${orderId}` }>
+              {String(id).padStart(padValue, '0')}
+            </span>
+          </span>
           <br />
-          <span data-testid={ `${orderDate}${id}` }>
+          <span data-testid={ `${orderDate}` }>
             { date }
           </span>
           <br />
-          <span data-testid={ `${deliveryStatus}${id}` }>{ order.status }</span>
+          <span data-testid={ `${deliveryStatus}` }>{ actualStatusOrder }</span>
           <br />
           <button
-            data-testid={ `${preparingCheck}${id}` }
+            data-testid={ `${preparingCheck}` }
             type="button"
             onClick={ () => { updateStatus(preparando); } }
-            disabled={ preparingButton(actualStatus) }
+            disabled={ preparingButton(actualStatusOrder) }
           >
             PREPARAR PEDIDO
           </button>
           <button
-            data-testid={ `${dispatchCheck}${id}` }
+            data-testid={ `${dispatchCheck}` }
             type="button"
             onClick={ () => { updateStatus(transito); } }
-            disabled={ dispatchButton(actualStatus) }
+            disabled={ dispatchButton(actualStatusOrder) }
 
           >
             SAIU PARA ENTREGA
           </button>
           <br />
-          <span
-            data-testid={ `${totalPrice}${id}` }
-          >
-            { `Total: ${order.totalPrice}` }
+          <span>
+            { 'Total: ' }
+            <span
+              data-testid={ `${totalPrice}` }
+            >
+              { totalPriceOrder }
+            </span>
           </span>
         </div>
       </div>

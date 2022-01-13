@@ -1,7 +1,7 @@
-const entregue = 'ENTREGUE';
-const preparando = 'PREPARANDO';
-const transito = 'EM TRANSITO';
-const pendente = 'PENDENTE';
+const entregue = 'Entregue';
+const preparando = 'Preparando';
+const transito = 'Em Trânsito';
+const pendente = 'Pendente';
 
 const preparingButton = (actualStatus) => {
   if (actualStatus === preparando) return true;

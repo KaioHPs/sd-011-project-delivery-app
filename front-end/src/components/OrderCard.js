@@ -9,6 +9,8 @@ import {
   address,
 } from '../dataTestIds/dataSellerOrders';
 
+const padValue = 4;
+
 const OrderCard = ({ order }) => {
   const {
     id, deliveryAddress,
@@ -35,7 +37,12 @@ const OrderCard = ({ order }) => {
       tabIndex={ 0 }
     >
       <div className="order-container">
-        <span data-test-id={ `${orderId}${id}` }>{ `Pedido 000${id}` }</span>
+        <span>
+          {'Pedido '}
+          <span data-testid={ `${orderId}${id}` }>
+            {String(id).padStart(padValue, '0')}
+          </span>
+        </span>
         <br />
         <span data-testid={ `${deliveryStatus}${id}` }>{ status }</span>
         <br />
