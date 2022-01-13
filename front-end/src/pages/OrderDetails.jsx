@@ -27,7 +27,6 @@ const OrderDetails = () => {
     const getOrder = async () => {
       const orderDetail = await axios.get(`http://localhost:3001/seller/orders/${id}`)
         .then((o) => o.data);
-      console.log(orderDetail);
       setOrder(orderDetail);
       setOrderStatus(orderDetail.status);
     };
