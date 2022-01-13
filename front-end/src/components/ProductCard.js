@@ -16,7 +16,7 @@ const ProductCard = ({ product, setValFunc, totalProds }) => {
     if (cart && cart[id]) {
       setQtt(cart[id].quantity);
     }
-  }, [id]);
+  }, []);
 
   useEffect(() => {
     const newVals = { ...totalProds };
@@ -26,7 +26,7 @@ const ProductCard = ({ product, setValFunc, totalProds }) => {
       newVals[id] = { price, quantity, name, id };
     }
     setValFunc(newVals);
-  }, [id, name, price, quantity, setValFunc, totalProds]);
+  }, [quantity]);
 
   const changeQtt = (e) => {
     if (e.target.value !== '') {
